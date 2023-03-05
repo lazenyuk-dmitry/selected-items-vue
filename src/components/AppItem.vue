@@ -2,10 +2,15 @@
 import type { Stuff } from "~stores/stuffList";
 import { toRefs, ref } from 'vue';
 
-const props = defineProps<{
+interface Props {
   data: Stuff;
   disabled?: boolean;
-}>()
+  clickable?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  clickable: false,
+});
 
 const emit = defineEmits<{
   (e: 'select', data: Stuff): void,
@@ -13,9 +18,13 @@ const emit = defineEmits<{
 }>();
 
 const selected = ref(false);
-const { data } = toRefs(props);
+const { data, clickable, disabled } = toRefs(props);
 
 function onClick() {
+  if (!clickable.value || disabled.value) {
+    return;
+  }
+
   if (!selected.value) {
     selected.value = true;
     emit("select", data.value);
@@ -27,14 +36,21 @@ function onClick() {
 </script>
 
 <template>
-  <button 
-    :class="[$style.root, {[$style.selected]: selected}]"
+  <div 
+    :class="[
+      $style.root, 
+      {
+        [$style.clickable]: clickable,
+        [$style.selected]: selected,
+        [$style.disabled]: disabled,
+      }
+    ]"
     :disabled="disabled"
     type="button"
     @click="onClick"
   >
     {{ data.name }}
-</button>
+</div>
 </template>
 
 <style lang="scss" module>
@@ -49,20 +65,22 @@ function onClick() {
   user-select: none;
   transition: $app-item-transition;
 
-  &:hover {
-    background: $app-item-hover-bg;
-    transition: $app-item-transition;
-  }
+  &.clickable {
+    &:hover {
+      background: $app-item-hover-bg;
+      transition: $app-item-transition;
+    }
 
-  &:disabled {
-    background: $app-item-disabled-bg;
-    opacity: 0.8;
-    transition: $app-item-transition;
-  }
+    &.disabled {
+      background: $app-item-disabled-bg;
+      opacity: 0.8;
+      transition: $app-item-transition;
+    }
 
-  &.selected {
-    border-color: $app-accent-color;
-    transition: $app-item-transition;
+    &.selected {
+      border-color: $app-accent-color;
+      transition: $app-item-transition;
+    }
   }
 }  
 </style>
