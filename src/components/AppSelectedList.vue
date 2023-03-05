@@ -5,7 +5,7 @@ import AppItem from "~components/AppItem.vue";
 
 const props = defineProps<{
   list: Stuff[];
-}>()
+}>();
 
 const { list } = toRefs(props);
 </script>
