@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/styles/_variables.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1678019906419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678022780911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,2 @@\n-$app-main-color: #000;\n\\ No newline at end of file\n+$app-main-color: #000;\n+$app-border: 4px solid #000;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1678019906419,
+            "name": "Commit-0",
+            "content": "$app-main-color: #000;"
+        }
+    ]
+}

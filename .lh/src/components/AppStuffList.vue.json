@@ -1,0 +1,70 @@
+{
+    "sourceFile": "src/components/AppStuffList.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1678012997120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678018698789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <script setup lang=\"ts\">\n+\n </script>\n \n <template>\n   <div>\n"
+                },
+                {
+                    "date": 1678018822221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,13 @@\n <script setup lang=\"ts\">\n+const props = defineProps({\n+  list: {\n+    type: Array,\n+    required: true,\n+  },\n \n+  \n+})\n </script>\n \n <template>\n   <div>\n"
+                },
+                {
+                    "date": 1678018938149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,20 @@\n <script setup lang=\"ts\">\n+import { toRefs } from 'vue';\n+\n const props = defineProps({\n   list: {\n     type: Array,\n     required: true,\n   },\n+})\n \n-  \n-})\n+const { list } = toRefs(props);\n </script>\n \n <template>\n   <div>\n-\n+    <div v-for=\"(item) in list\" :key=\"item.id\">\n+      {{ item.name }}\n+    </div>\n   </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678019066478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <script setup lang=\"ts\">\n+import { Stuff } from \"~stores/stuffList\"\n import { toRefs } from 'vue';\n \n const props = defineProps({\n   list: {\n-    type: Array,\n+    type: Stuff[],\n     required: true,\n   },\n })\n \n"
+                },
+                {
+                    "date": 1678019270585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,11 @@\n <script setup lang=\"ts\">\n-import { Stuff } from \"~stores/stuffList\"\n+import type { Stuff } from \"~stores/stuffList\";\n import { toRefs } from 'vue';\n \n-const props = defineProps({\n-  list: {\n-    type: Stuff[],\n-    required: true,\n-  },\n-})\n+const props = defineProps<{\n+  list: Stuff[];\n+}>()\n \n const { list } = toRefs(props);\n </script>\n \n"
+                },
+                {
+                    "date": 1678019392676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,11 @@\n     <div v-for=\"(item) in list\" :key=\"item.id\">\n       {{ item.name }}\n     </div>\n   </div>\n-</template>\n\\ No newline at end of file\n+</template>\n+\n+<style lang=\"scss\" module>\n+.root {\n+  border: 2px solid #000;\n+}\n+</style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678019416237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n const { list } = toRefs(props);\n </script>\n \n <template>\n-  <div>\n+  <div :class=\"$style.root\">\n     <div v-for=\"(item) in list\" :key=\"item.id\">\n       {{ item.name }}\n     </div>\n   </div>\n"
+                },
+                {
+                    "date": 1678019462462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,15 +10,15 @@\n </script>\n \n <template>\n   <div :class=\"$style.root\">\n-    <div v-for=\"(item) in list\" :key=\"item.id\">\n+    <div :class=\"$style.item\" v-for=\"(item) in list\" :key=\"item.id\">\n       {{ item.name }}\n     </div>\n   </div>\n </template>\n \n <style lang=\"scss\" module>\n-.root {\n+.root, .item {\n   border: 2px solid #000;\n }\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678019493314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,9 @@\n <style lang=\"scss\" module>\n .root, .item {\n   border: 2px solid #000;\n }\n+\n+.item {\n+  padding: 30px;\n+}\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678019521508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,11 @@\n   </div>\n </template>\n \n <style lang=\"scss\" module>\n+.root {\n+  display: flex;\n+}\n .root, .item {\n   border: 2px solid #000;\n }\n \n"
+                },
+                {
+                    "date": 1678019540494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,6 +26,7 @@\n }\n \n .item {\n   padding: 30px;\n+  margin: 30px;\n }\n </style>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678019569582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,12 @@\n \n <style lang=\"scss\" module>\n .root {\n   display: flex;\n+  flex-wrap: wrap;\n }\n .root, .item {\n-  border: 2px solid #000;\n+  border: 4px solid #000;\n }\n \n .item {\n   padding: 30px;\n"
+                },
+                {
+                    "date": 1678022787032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   display: flex;\n   flex-wrap: wrap;\n }\n .root, .item {\n-  border: 4px solid #000;\n+  border: $app-border;\n }\n \n .item {\n   padding: 30px;\n"
+                }
+            ],
+            "date": 1678012997120,
+            "name": "Commit-0",
+            "content": "<script setup lang=\"ts\">\n</script>\n\n<template>\n  <div>\n\n  </div>\n</template>"
+        }
+    ]
+}

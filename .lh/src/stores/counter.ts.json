@@ -1,0 +1,70 @@
+{
+    "sourceFile": "src/stores/counter.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1678013535148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678014324371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { ref, computed } from 'vue'\n import { defineStore } from 'pinia'\n \n-export const useCounterStore = defineStore('counter', () => {\n+export const userStuff = defineStore('userStuff', () => {\n   \n })\n"
+                },
+                {
+                    "date": 1678014839632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n import { ref, computed } from 'vue'\n import { defineStore } from 'pinia'\n \n export const userStuff = defineStore('userStuff', () => {\n-  \n+  state: () => {\n+    return {\n+      userList: [] as UserInfo[],\n+    }\n+  },\n })\n"
+                },
+                {
+                    "date": 1678014916778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { ref, computed } from 'vue'\n import { defineStore } from 'pinia'\n \n-export const userStuff = defineStore('userStuff', () => {\n+export const stuffList = defineStore('stuffList', () => {\n   state: () => {\n     return {\n-      userList: [] as UserInfo[],\n+      userStuff: [] as UserInfo[],\n     }\n   },\n })\n"
+                },
+                {
+                    "date": 1678015073795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,13 @@\n import { ref, computed } from 'vue'\n import { defineStore } from 'pinia'\n \n+interface stuff \n+\n export const stuffList = defineStore('stuffList', () => {\n   state: () => {\n     return {\n       userStuff: [] as UserInfo[],\n+      storeStuff: [] as UserInfo[],\n     }\n   },\n })\n"
+                },
+                {
+                    "date": 1678015097153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n import { ref, computed } from 'vue'\n import { defineStore } from 'pinia'\n \n-interface stuff \n+interface stuff {\n+  id: number,\n+  \n+}\n \n export const stuffList = defineStore('stuffList', () => {\n   state: () => {\n     return {\n"
+                },
+                {
+                    "date": 1678015120525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { defineStore } from 'pinia'\n \n interface stuff {\n   id: number,\n-  \n+  name: string,\n }\n \n export const stuffList = defineStore('stuffList', () => {\n   state: () => {\n"
+                },
+                {
+                    "date": 1678015134440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import { ref, computed } from 'vue'\n import { defineStore } from 'pinia'\n \n-interface stuff {\n+interface Stuff {\n   id: number,\n   name: string,\n }\n \n export const stuffList = defineStore('stuffList', () => {\n   state: () => {\n     return {\n-      userStuff: [] as UserInfo[],\n-      storeStuff: [] as UserInfo[],\n+      userStuff: [] as Stuff[],\n+      storeStuff: [] as Stuff[],\n     }\n   },\n })\n"
+                },
+                {
+                    "date": 1678015236988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   id: number,\n   name: string,\n }\n \n-export const stuffList = defineStore('stuffList', () => {\n+export const stuffList = defineStore('stuffList', {\n   state: () => {\n     return {\n       userStuff: [] as Stuff[],\n       storeStuff: [] as Stuff[],\n"
+                },
+                {
+                    "date": 1678015361239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,5 +12,9 @@\n       userStuff: [] as Stuff[],\n       storeStuff: [] as Stuff[],\n     }\n   },\n+  getters: {\n+    userStuff: (state) => state.userStuff,\n+    storeStuff: (state) => state.storeStuff,\n+  },\n })\n"
+                },
+                {
+                    "date": 1678015510655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,10 @@\n   getters: {\n     userStuff: (state) => state.userStuff,\n     storeStuff: (state) => state.storeStuff,\n   },\n+  actions: {\n+    fetchData() {\n+      \n+    },\n+  },\n })\n"
+                },
+                {
+                    "date": 1678015539113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n-import { ref, computed } from 'vue'\n-import { defineStore } from 'pinia'\n+import { ref, computed } from 'vue';\n+import { defineStore } from 'pinia';\n \n+import from \"\"\n+\n interface Stuff {\n   id: number,\n   name: string,\n }\n"
+                },
+                {
+                    "date": 1678015686641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { ref, computed } from 'vue';\n import { defineStore } from 'pinia';\n \n-import from \"\"\n+import UserStuff from \"~constants/userStuff\";\n+import StoreStuff from \"~constants/userStuff\";\n \n interface Stuff {\n   id: number,\n   name: string,\n@@ -20,8 +21,9 @@\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n-      \n+      this.userStuff = UserStuff;\n+      this.storeStuff = StoreStuff;\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678015826575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-import { ref, computed } from 'vue';\n import { defineStore } from 'pinia';\n \n import UserStuff from \"~constants/userStuff\";\n import StoreStuff from \"~constants/userStuff\";\n"
+                }
+            ],
+            "date": 1678013535147,
+            "name": "Commit-0",
+            "content": "import { ref, computed } from 'vue'\nimport { defineStore } from 'pinia'\n\nexport const useCounterStore = defineStore('counter', () => {\n  \n})\n"
+        }
+    ]
+}

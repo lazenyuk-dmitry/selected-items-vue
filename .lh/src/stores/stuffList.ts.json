@@ -1,0 +1,110 @@
+{
+    "sourceFile": "src/stores/stuffList.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 23,
+            "patches": [
+                {
+                    "date": 1678016397533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678016802430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,11 @@\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n+      console.log(UserStuff);\n+      \n+\n       this.userStuff = UserStuff;\n       this.storeStuff = StoreStuff;\n     },\n   },\n"
+                },
+                {
+                    "date": 1678016891037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { defineStore } from 'pinia';\n \n import UserStuff from \"~constants/userStuff\";\n-import StoreStuff from \"~constants/userStuff\";\n+import StoreStuff from \"~constants/storeStuff\";\n \n interface Stuff {\n   id: number,\n   name: string,\n"
+                },
+                {
+                    "date": 1678016974762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     fetchData() {\n       console.log(UserStuff);\n       \n \n-      this.userStuff = UserStuff;\n-      this.storeStuff = StoreStuff;\n+      this.userStuff = UserStuff as Stuff[];\n+      this.storeStuff = StoreStuff as Stuff[];\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678017055963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     fetchData() {\n       console.log(UserStuff);\n       \n \n-      this.userStuff = UserStuff as Stuff[];\n-      this.storeStuff = StoreStuff as Stuff[];\n+      this.userStuff = [...UserStuff];\n+      this.storeStuff = [...StoreStuff];\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678017468376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     fetchData() {\n       console.log(UserStuff);\n       \n \n-      this.userStuff = [...UserStuff];\n+      this.userStuff = Array.from(UserStuff);\n       this.storeStuff = [...StoreStuff];\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678017614503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n \n export const useStuffList = defineStore('useStuffList', {\n   state: () => {\n     return {\n-      userStuff: [] as Stuff[],\n-      storeStuff: [] as Stuff[],\n+      userStuff: [],\n+      storeStuff: [],\n     }\n   },\n   getters: {\n     userStuff: (state) => state.userStuff,\n"
+                },
+                {
+                    "date": 1678017640520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n \n export const useStuffList = defineStore('useStuffList', {\n   state: () => {\n     return {\n-      userStuff: [],\n-      storeStuff: [],\n+      userStuff: null,\n+      storeStuff: null,\n     }\n   },\n   getters: {\n     userStuff: (state) => state.userStuff,\n"
+                },
+                {
+                    "date": 1678017700390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n \n export const useStuffList = defineStore('useStuffList', {\n   state: () => {\n     return {\n-      userStuff: null,\n-      storeStuff: null,\n+      userStuff: [] as Stuff[],\n+      storeStuff: [] as Stuff[],\n     }\n   },\n   getters: {\n     userStuff: (state) => state.userStuff,\n@@ -22,9 +22,11 @@\n   actions: {\n     fetchData() {\n       console.log(UserStuff);\n       \n-\n+      UserStuff.forEach(item => {\n+        this.userStuff.push(item);\n+      })\n       this.userStuff = Array.from(UserStuff);\n       this.storeStuff = [...StoreStuff];\n     },\n   },\n"
+                },
+                {
+                    "date": 1678017780288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,14 +20,13 @@\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n-      console.log(UserStuff);\n+      console.log(this.userStuff);\n       \n       UserStuff.forEach(item => {\n         this.userStuff.push(item);\n       })\n-      this.userStuff = Array.from(UserStuff);\n       this.storeStuff = [...StoreStuff];\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678017864203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n \n export const useStuffList = defineStore('useStuffList', {\n   state: () => {\n     return {\n+      a: 1,\n       userStuff: [] as Stuff[],\n       storeStuff: [] as Stuff[],\n     }\n   },\n@@ -20,13 +21,8 @@\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n-      console.log(this.userStuff);\n-      \n-      UserStuff.forEach(item => {\n-        this.userStuff.push(item);\n-      })\n-      this.storeStuff = [...StoreStuff];\n+      this.a = 2;\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678017898660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,11 @@\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n+      console.log(this.a);\n+      \n+\n       this.a = 2;\n     },\n   },\n })\n"
+                },
+                {
+                    "date": 1678017908700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n-      console.log(this.a);\n+      console.log(this.userStuff);\n       \n \n       this.a = 2;\n     },\n"
+                },
+                {
+                    "date": 1678017918765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n export const useStuffList = defineStore('useStuffList', {\n   state: () => {\n     return {\n       a: 1,\n-      userStuff: [] as Stuff[],\n+      userStuff: [],\n       storeStuff: [] as Stuff[],\n     }\n   },\n   getters: {\n"
+                },
+                {
+                    "date": 1678018012462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,14 @@\n       storeStuff: [] as Stuff[],\n     }\n   },\n   getters: {\n-    userStuff: (state) => state.userStuff,\n+    userStuff: (state) => {\n+      console.log(state);\n+\n+      return 5555;\n+      \n+    },\n     storeStuff: (state) => state.storeStuff,\n   },\n   actions: {\n     fetchData() {\n"
+                },
+                {
+                    "date": 1678018139266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,30 +7,12 @@\n   id: number,\n   name: string,\n }\n \n-export const useStuffList = defineStore('useStuffList', {\n-  state: () => {\n-    return {\n-      a: 1,\n-      userStuff: [],\n-      storeStuff: [] as Stuff[],\n-    }\n-  },\n-  getters: {\n-    userStuff: (state) => {\n-      console.log(state);\n+export const useStuffList = defineStore('useStuffList', () => {\n+  const userStuff:Stuff[] = [];\n+  const storeStuff:Stuff[] = [];\n \n-      return 5555;\n-      \n-    },\n-    storeStuff: (state) => state.storeStuff,\n-  },\n-  actions: {\n-    fetchData() {\n-      console.log(this.userStuff);\n-      \n+  function fetch() {\n \n-      this.a = 2;\n-    },\n-  },\n+  }\n })\n"
+                },
+                {
+                    "date": 1678018189610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,19 @@\n import { defineStore } from 'pinia';\n \n import UserStuff from \"~constants/userStuff\";\n import StoreStuff from \"~constants/storeStuff\";\n+import { ref } from 'vue';\n \n interface Stuff {\n   id: number,\n   name: string,\n }\n \n export const useStuffList = defineStore('useStuffList', () => {\n-  const userStuff:Stuff[] = [];\n-  const storeStuff:Stuff[] = [];\n+  const userStuff:Stuff[] = ref([]);\n+  const storeStuff:Stuff[] = ref([]);\n \n   function fetch() {\n-\n+    \n   }\n })\n"
+                },
+                {
+                    "date": 1678018230522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { defineStore } from 'pinia';\n+import { ref } from 'vue';\n \n import UserStuff from \"~constants/userStuff\";\n import StoreStuff from \"~constants/storeStuff\";\n-import { ref } from 'vue';\n \n interface Stuff {\n   id: number,\n   name: string,\n@@ -13,7 +13,8 @@\n   const userStuff:Stuff[] = ref([]);\n   const storeStuff:Stuff[] = ref([]);\n \n   function fetch() {\n-    \n+    userStuff = UserStuff;\n+    storeStuff = StoreStuff;\n   }\n })\n"
+                },
+                {
+                    "date": 1678018286045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n   name: string,\n }\n \n export const useStuffList = defineStore('useStuffList', () => {\n-  const userStuff:Stuff[] = ref([]);\n-  const storeStuff:Stuff[] = ref([]);\n+  const userStuff: Stuff[] = ref([]);\n+  const storeStuff: Stuff[] = ref([]);\n \n   function fetch() {\n     userStuff = UserStuff;\n     storeStuff = StoreStuff;\n"
+                },
+                {
+                    "date": 1678018312779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,5 +16,7 @@\n   function fetch() {\n     userStuff = UserStuff;\n     storeStuff = StoreStuff;\n   }\n+\n+  return { userStuff, storeStuff };\n })\n"
+                },
+                {
+                    "date": 1678018389001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n   name: string,\n }\n \n export const useStuffList = defineStore('useStuffList', () => {\n-  const userStuff: Stuff[] = ref([]);\n-  const storeStuff: Stuff[] = ref([]);\n+  const userStuff: Stuff[];\n+  const storeStuff: Stuff[];\n \n   function fetch() {\n     userStuff = UserStuff;\n     storeStuff = StoreStuff;\n"
+                },
+                {
+                    "date": 1678018460449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n   name: string,\n }\n \n export const useStuffList = defineStore('useStuffList', () => {\n-  const userStuff: Stuff[];\n-  const storeStuff: Stuff[];\n+  let userStuff: Stuff[] = [];\n+  let storeStuff: Stuff[] = [];\n \n   function fetch() {\n     userStuff = UserStuff;\n     storeStuff = StoreStuff;\n"
+                },
+                {
+                    "date": 1678018471070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,8 @@\n     userStuff = UserStuff;\n     storeStuff = StoreStuff;\n   }\n \n+  fetch();\n+\n   return { userStuff, storeStuff };\n })\n"
+                },
+                {
+                    "date": 1678018992098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,10 @@\n import { defineStore } from 'pinia';\n-import { ref } from 'vue';\n \n import UserStuff from \"~constants/userStuff\";\n import StoreStuff from \"~constants/storeStuff\";\n \n-interface Stuff {\n+export interface Stuff {\n   id: number,\n   name: string,\n }\n \n"
+                }
+            ],
+            "date": 1678016397533,
+            "name": "Commit-0",
+            "content": "import { defineStore } from 'pinia';\n\nimport UserStuff from \"~constants/userStuff\";\nimport StoreStuff from \"~constants/userStuff\";\n\ninterface Stuff {\n  id: number,\n  name: string,\n}\n\nexport const useStuffList = defineStore('useStuffList', {\n  state: () => {\n    return {\n      userStuff: [] as Stuff[],\n      storeStuff: [] as Stuff[],\n    }\n  },\n  getters: {\n    userStuff: (state) => state.userStuff,\n    storeStuff: (state) => state.storeStuff,\n  },\n  actions: {\n    fetchData() {\n      this.userStuff = UserStuff;\n      this.storeStuff = StoreStuff;\n    },\n  },\n})\n"
+        }
+    ]
+}

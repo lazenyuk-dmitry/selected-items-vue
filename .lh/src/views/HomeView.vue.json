@@ -3,11 +3,91 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1678012430796,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678015964755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <script setup lang=\"ts\">\n+import \n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016072945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script setup lang=\"ts\">\n-import \n+import { s } from \"~store/stuffList\"\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016089570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script setup lang=\"ts\">\n-import { s } from \"~store/stuffList\"\n+import { stuffList } from \"~store/stuffList\";\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016141939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script setup lang=\"ts\">\n-import { stuffList } from \"~store/stuffList\";\n+import { stuffList } from \"~stores/stuffList\";\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016189861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n <script setup lang=\"ts\">\n import { stuffList } from \"~stores/stuffList\";\n+\n+stuffList.fet\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016208693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script setup lang=\"ts\">\n import { stuffList } from \"~stores/stuffList\";\n \n-stuffList.fet\n+stuffList.fetchData();\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016435098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n <script setup lang=\"ts\">\n-import { stuffList } from \"~stores/stuffList\";\n+import { useStuffList } from \"~stores/stuffList\";\n \n-stuffList.fetchData();\n+const stuffList = useStuffList;\n+\n+stuffList.\n+\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678016441354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList;\n \n-stuffList.\n+stuffList.fetchData();\n \n </script>\n \n <template>\n"
+                },
+                {
+                    "date": 1678016453206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <script setup lang=\"ts\">\n import { useStuffList } from \"~stores/stuffList\";\n \n-const stuffList = useStuffList;\n+const stuffList = useStuffList();\n \n stuffList.fetchData();\n \n </script>\n"
+                },
+                {
+                    "date": 1678016701985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,11 @@\n const stuffList = useStuffList();\n \n stuffList.fetchData();\n \n+console.log(stuffList);\n+\n+\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678018487312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,8 @@\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n \n-stuffList.fetchData();\n-\n console.log(stuffList);\n \n \n </script>\n"
+                },
+                {
+                    "date": 1678018603338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n <script setup lang=\"ts\">\n+import { storeToRefs } from \"pinia\";\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n \n-console.log(stuffList);\n+const {  } = storeToRefs(stuffList);\n \n \n </script>\n \n"
+                },
+                {
+                    "date": 1678018612674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n \n-const {  } = storeToRefs(stuffList);\n+const { userStuff,  } = storeToRefs(stuffList);\n \n \n </script>\n \n"
+                },
+                {
+                    "date": 1678018618914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n \n-const { userStuff,  } = storeToRefs(stuffList);\n+const { userStuff, storeStuff } = storeToRefs(stuffList);\n \n \n </script>\n \n"
+                },
+                {
+                    "date": 1678018687963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <script setup lang=\"ts\">\n+import type AppStuffList from \"@/components/AppStuffList.vue\";\n import { storeToRefs } from \"pinia\";\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n@@ -10,7 +11,7 @@\n </script>\n \n <template>\n   <main>\n- \n+    <AppStuffList :list=\"userStuff\"/>\n   </main>\n </template>\n"
+                },
+                {
+                    "date": 1678019292684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <script setup lang=\"ts\">\n-import type AppStuffList from \"@/components/AppStuffList.vue\";\n+import AppStuffList from \"@/components/AppStuffList.vue\";\n import { storeToRefs } from \"pinia\";\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n"
+                },
+                {
+                    "date": 1678019318732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,12 @@\n \n const { userStuff, storeStuff } = storeToRefs(stuffList);\n \n \n+console.log(userStuff);\n+\n+\n+\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678019337434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n \n-const { userStuff, storeStuff } = storeToRefs(stuffList);\n+const { userStuff, storeStuff } = stuffList;\n \n \n console.log(userStuff);\n \n"
+                },
+                {
+                    "date": 1678022800909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n <script setup lang=\"ts\">\n import AppStuffList from \"@/components/AppStuffList.vue\";\n-import { storeToRefs } from \"pinia\";\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n \n"
+                },
+                {
+                    "date": 1678022813256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,9 @@\n \n const { userStuff, storeStuff } = stuffList;\n \n \n-console.log(userStuff);\n \n-\n-\n </script>\n \n <template>\n   <main>\n"
                 }
             ],
             "date": 1678012430796,

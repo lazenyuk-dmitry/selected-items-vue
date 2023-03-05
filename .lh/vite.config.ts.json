@@ -1,0 +1,54 @@
+{
+    "sourceFile": "vite.config.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1678015570544,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678016004718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   plugins: [vue()],\n   resolve: {\n     alias: {\n       '@': fileURLToPath(new URL('./src', import.meta.url)),\n-      '~constants': fileURLToPath(new URL('./src/constants', import.meta.url))\n+      '~constants': fileURLToPath(new URL('./src/constants', import.meta.url)),\n+      '~store': fileURLToPath(new URL('./src/store', import.meta.url))\n     }\n   }\n })\n"
+                },
+                {
+                    "date": 1678016144821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,8 @@\n   resolve: {\n     alias: {\n       '@': fileURLToPath(new URL('./src', import.meta.url)),\n       '~constants': fileURLToPath(new URL('./src/constants', import.meta.url)),\n-      '~store': fileURLToPath(new URL('./src/store', import.meta.url))\n+      '~stores': fileURLToPath(new URL('./src/store', import.meta.url))\n     }\n   }\n })\n"
+                },
+                {
+                    "date": 1678016159772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,8 @@\n   resolve: {\n     alias: {\n       '@': fileURLToPath(new URL('./src', import.meta.url)),\n       '~constants': fileURLToPath(new URL('./src/constants', import.meta.url)),\n-      '~stores': fileURLToPath(new URL('./src/store', import.meta.url))\n+      '~stores': fileURLToPath(new URL('./src/stores', import.meta.url))\n     }\n   }\n })\n"
+                },
+                {
+                    "date": 1678019715183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,15 +2,18 @@\n \n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n \n+import \"\"\n+\n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [vue()],\n   resolve: {\n     alias: {\n       '@': fileURLToPath(new URL('./src', import.meta.url)),\n       '~constants': fileURLToPath(new URL('./src/constants', import.meta.url)),\n-      '~stores': fileURLToPath(new URL('./src/stores', import.meta.url))\n+      '~stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n+      '~styles': fileURLToPath(new URL('./src/styles', import.meta.url))\n     }\n   }\n })\n"
+                },
+                {
+                    "date": 1678019743436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n import { defineConfig } from 'vite'\n import vue from '@vitejs/plugin-vue'\n \n-import \"\"\n+import \"~styles/base.scss\"\n \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [vue()],\n"
+                },
+                {
+                    "date": 1678019842956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,6 +14,11 @@\n       '~constants': fileURLToPath(new URL('./src/constants', import.meta.url)),\n       '~stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n       '~styles': fileURLToPath(new URL('./src/styles', import.meta.url))\n     }\n+  },\n+  preprocessorOptions: {\n+    scss: {\n+      additionalData: `@import \"@/assets/global.scss\";`\n+    }\n   }\n })\n"
+                },
+                {
+                    "date": 1678019883698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,12 @@\n       '~stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n       '~styles': fileURLToPath(new URL('./src/styles', import.meta.url))\n     }\n   },\n-  preprocessorOptions: {\n-    scss: {\n-      additionalData: `@import \"@/assets/global.scss\";`\n+  css: {\n+    preprocessorOptions: {\n+      scss: {\n+        additionalData: `@import \"~styles/_variables.scss\";`\n+      }\n     }\n-  }\n+  },\n })\n"
+                },
+                {
+                    "date": 1678020018882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-import { fileURLToPath, URL } from 'node:url'\n+import { fileURLToPath, URL } from 'node:url';\n \n-import { defineConfig } from 'vite'\n-import vue from '@vitejs/plugin-vue'\n+import { defineConfig } from 'vite';\n+import vue from '@vitejs/plugin-vue';\n \n-import \"~styles/base.scss\"\n+import \"~styles/base.scss\";\n \n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [vue()],\n"
+                },
+                {
+                    "date": 1678020426657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,8 @@\n \n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n \n-import \"~styles/base.scss\";\n-\n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [vue()],\n   resolve: {\n"
+                }
+            ],
+            "date": 1678015570544,
+            "name": "Commit-0",
+            "content": "import { fileURLToPath, URL } from 'node:url'\n\nimport { defineConfig } from 'vite'\nimport vue from '@vitejs/plugin-vue'\n\n// https://vitejs.dev/config/\nexport default defineConfig({\n  plugins: [vue()],\n  resolve: {\n    alias: {\n      '@': fileURLToPath(new URL('./src', import.meta.url)),\n      '~constants': fileURLToPath(new URL('./src/constants', import.meta.url))\n    }\n  }\n})\n"
+        }
+    ]
+}

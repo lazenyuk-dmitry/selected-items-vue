@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/styles/base.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1678019674905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678019908855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n html {\n   font-size: 16px;\n   font-family: Arial, Helvetica, sans-serif;\n-  color: ;\n+  color: $app-main-color;\n   -webkit-box-sizing: border-box;\n   -moz-box-sizing: border-box;\n   box-sizing: border-box;\n }\n"
+                }
+            ],
+            "date": 1678019674905,
+            "name": "Commit-0",
+            "content": "html {\n  font-size: 16px;\n  font-family: Arial, Helvetica, sans-serif;\n  color: ;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n}\n*, *:before, *:after {\n  -webkit-box-sizing: inherit;\n  -moz-box-sizing: inherit;\n  box-sizing: inherit;\n}"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/constants.ts/storeStuff.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1678012878562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1678012878562,
+            "name": "Commit-0",
+            "content": "export default [\n  {\n      \"id\": 11,\n      \"name\": \"Jacket 1\"\n  },\n  {\n      \"id\": 12,\n      \"name\": \"Jacket 2\"\n  },\n  {\n      \"id\": 13,\n      \"name\": \"Jacket 3\"\n  },\n  {\n      \"id\": 14,\n      \"name\": \"Jacket 4\"\n  },\n  {\n      \"id\": 15,\n      \"name\": \"Hoodie 1\"\n  },\n  {\n      \"id\": 16,\n      \"name\": \"Hoodie 2\"\n  },\n  {\n      \"id\": 17,\n      \"name\": \"Hoodie 3\"\n  },\n  {\n      \"id\": 18,\n      \"name\": \"Hoodie 4\"\n  }\n];\n"
+        }
+    ]
+}

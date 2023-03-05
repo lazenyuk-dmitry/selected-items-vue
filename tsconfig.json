@@ -4,7 +4,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "~constants/*": ["./src/constants/*"],
+      "~stores/*": ["./src/stores/*"],
+      "~styles/*": ["./src/styles/*"],
     }
   },
 
