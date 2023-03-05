@@ -1,0 +1,130 @@
+{
+    "sourceFile": "src/components/AppItem.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 28,
+            "patches": [
+                {
+                    "date": 1678023804425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678023946370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,22 @@\n+<script lang=\"ts\" setup>\n+import type { Stuff } from \"~stores/stuffList\";\n+import { toRefs } from 'vue';\n \n+const props = defineProps<{\n+  data: Stuff;\n+}>()\n\\ No newline at end of file\n \n+const { data } = toRefs(props);\n+</script>\n+\n <template>\n-  <div>\n-    \n+  <div :class=\"$style.root\">\n+    {{ data.name }}\n   </div>\n-</template>\n+</template>\n+\n+<style lang=\"scss\" modules>\n+.root {\n+  \n+}  \n+</style>\n"
+                },
+                {
+                    "date": 1678023975168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,8 @@\n </template>\n \n <style lang=\"scss\" modules>\n .root {\n-  \n+  padding: 30px;\n+  margin: 30px;\n\\ No newline at end of file\n }  \n-</style>\n+</style>\n"
+                },
+                {
+                    "date": 1678023984268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,6 +18,7 @@\n <style lang=\"scss\" modules>\n .root {\n   padding: 30px;\n   margin: 30px;\n+  border: $app-border;\n }  \n\\ No newline at end of file\n-</style>\n+</style>\n"
+                },
+                {
+                    "date": 1678024136886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,6 @@\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n }  \n-</style>\n\\ No newline at end of file\n+</style>\n+\n"
+                },
+                {
+                    "date": 1678024157270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,5 +21,4 @@\n   margin: 30px;\n   border: $app-border;\n }  \n </style>\n-\n"
+                },
+                {
+                    "date": 1678024185901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     {{ data.name }}\n   </div>\n </template>\n \n-<style lang=\"scss\" modules>\n+<style lang=\"scss\" module>\n .root {\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n"
+                },
+                {
+                    "date": 1678024213696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n </template>\n \n <style lang=\"scss\" module>\n .root {\n+  font-weight: bold;\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n }  \n"
+                },
+                {
+                    "date": 1678025953583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,15 @@\n   font-weight: bold;\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n+\n+  &:hover {\n+    background: #ccc;\n+    transition: 0.6s;\n+  }\n+\n+  &.selected {\n+    background: #ccc;\n+  }\n }  \n </style>\n"
+                },
+                {
+                    "date": 1678026028085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,18 @@\n <script lang=\"ts\" setup>\n import type { Stuff } from \"~stores/stuffList\";\n-import { toRefs } from 'vue';\n+import { toRefs, ref } from 'vue';\n \n const props = defineProps<{\n   data: Stuff;\n }>()\n \n+const selected = ref(false);\n const { data } = toRefs(props);\n </script>\n \n <template>\n-  <div :class=\"$style.root\">\n+  <div :class=\"[$style.root, {[$style.selected]: selected}]\">\n     {{ data.name }}\n   </div>\n </template>\n \n"
+                },
+                {
+                    "date": 1678026045298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n   font-weight: bold;\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n+  transition: 0.6s;\n \n   &:hover {\n     background: #ccc;\n     transition: 0.6s;\n"
+                },
+                {
+                    "date": 1678026169410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,23 @@\n const props = defineProps<{\n   data: Stuff;\n }>()\n \n+const emit = defineEmits<{\n+  (e: 'select', item: Stuff): void,\n+  (e: 'unselect', item: Stuff): void,\n+}>();\n+\n const selected = ref(false);\n const { data } = toRefs(props);\n+\n+function onClick(item: Stuff) {\n+  if (!selected.value) {\n+    emit(\"select\", item);\n+  } else {\n+    emit(\"unselect\", item);\n+  }\n+};\n </script>\n \n <template>\n   <div :class=\"[$style.root, {[$style.selected]: selected}]\">\n"
+                },
+                {
+                    "date": 1678026259157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,26 +6,26 @@\n   data: Stuff;\n }>()\n \n const emit = defineEmits<{\n-  (e: 'select', item: Stuff): void,\n-  (e: 'unselect', item: Stuff): void,\n+  (e: 'select', data: Stuff): void,\n+  (e: 'unselect', data: Stuff): void,\n }>();\n \n const selected = ref(false);\n const { data } = toRefs(props);\n \n-function onClick(item: Stuff) {\n+function onClick() {\n   if (!selected.value) {\n-    emit(\"select\", item);\n+    emit(\"select\", data);\n   } else {\n-    emit(\"unselect\", item);\n+    emit(\"unselect\", data);\n   }\n };\n </script>\n \n <template>\n-  <div :class=\"[$style.root, {[$style.selected]: selected}]\">\n+  <div :class=\"[$style.root, {[$style.selected]: selected}]\" @click=\"onClick\">\n     {{ data.name }}\n   </div>\n </template>\n \n"
+                },
+                {
+                    "date": 1678026442686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,11 @@\n const { data } = toRefs(props);\n \n function onClick() {\n   if (!selected.value) {\n-    emit(\"select\", data);\n+    emit(\"select\", data.value);\n   } else {\n-    emit(\"unselect\", data);\n+    emit(\"unselect\", data.value);\n   }\n };\n </script>\n \n"
+                },
+                {
+                    "date": 1678026480598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n   font-weight: bold;\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n+  cursor: pointer;\n   transition: 0.6s;\n \n   &:hover {\n     background: #ccc;\n"
+                },
+                {
+                    "date": 1678026537768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,16 +35,17 @@\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n   cursor: pointer;\n-  transition: 0.6s;\n+  transition: $app-item-transition;\n \n   &:hover {\n     background: #ccc;\n-    transition: 0.6s;\n+    transition: $app-item-transition;\n   }\n \n   &.selected {\n-    background: #ccc;\n+    border-color: yellow;\n+    transition: $app-item-transition;\n   }\n }  \n </style>\n"
+                },
+                {
+                    "date": 1678026574180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,12 @@\n const { data } = toRefs(props);\n \n function onClick() {\n   if (!selected.value) {\n+    selected.value = true;\n     emit(\"select\", data.value);\n   } else {\n+    selected.value = false;\n     emit(\"unselect\", data.value);\n   }\n };\n </script>\n"
+                },
+                {
+                    "date": 1678026678894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     transition: $app-item-transition;\n   }\n \n   &.selected {\n-    border-color: yellow;\n+    border-color: $app-accent-color;\n     transition: $app-item-transition;\n   }\n }  \n </style>\n"
+                },
+                {
+                    "date": 1678026722737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n   cursor: pointer;\n   transition: $app-item-transition;\n \n   &:hover {\n-    background: #ccc;\n+    background: $app-item-hover-bg;\n     transition: $app-item-transition;\n   }\n \n   &.selected {\n"
+                },
+                {
+                    "date": 1678026733196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,9 @@\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n   cursor: pointer;\n+  user-select: none;\n   transition: $app-item-transition;\n \n   &:hover {\n     background: $app-item-hover-bg;\n"
+                },
+                {
+                    "date": 1678026819640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,13 @@\n     background: $app-item-hover-bg;\n     transition: $app-item-transition;\n   }\n \n+  &:disabled {\n+    background: $app-item-disabled-bg;\n+    opacity: 0.8;\n+  }\n+\n   &.selected {\n     border-color: $app-accent-color;\n     transition: $app-item-transition;\n   }\n"
+                },
+                {
+                    "date": 1678026827905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,8 +48,9 @@\n \n   &:disabled {\n     background: $app-item-disabled-bg;\n     opacity: 0.8;\n+    transition: $app-item-transition;\n   }\n \n   &.selected {\n     border-color: $app-accent-color;\n"
+                },
+                {
+                    "date": 1678026846212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { toRefs, ref } from 'vue';\n \n const props = defineProps<{\n   data: Stuff;\n+  disabled?: boolean;\n }>()\n \n const emit = defineEmits<{\n   (e: 'select', data: Stuff): void,\n"
+                },
+                {
+                    "date": 1678026918470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,15 +26,20 @@\n };\n </script>\n \n <template>\n-  <div :class=\"[$style.root, {[$style.selected]: selected}]\" @click=\"onClick\">\n+  <button \n+    :class=\"[$style.root, {[$style.selected]: selected}]\" \n+    type=\"button\" \n+    @click=\"onClick\"\n+  >\n     {{ data.name }}\n-  </div>\n+</button>\n </template>\n \n <style lang=\"scss\" module>\n .root {\n+  display: inline-block;\n   font-weight: bold;\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n"
+                },
+                {
+                    "date": 1678026936989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,11 @@\n </script>\n \n <template>\n   <button \n-    :class=\"[$style.root, {[$style.selected]: selected}]\" \n-    type=\"button\" \n+    :class=\"[$style.root, {[$style.selected]: selected}]\"\n+    :disabled=\"disabled\"\n+    type=\"button\"\n     @click=\"onClick\"\n   >\n     {{ data.name }}\n </button>\n"
+                },
+                {
+                    "date": 1678026965334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n <style lang=\"scss\" module>\n .root {\n   display: inline-block;\n   font-weight: bold;\n+  font-size: 16px;\n   padding: 30px;\n   margin: 30px;\n   border: $app-border;\n   cursor: pointer;\n"
+                },
+                {
+                    "date": 1678029151814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,10 +41,10 @@\n .root {\n   display: inline-block;\n   font-weight: bold;\n   font-size: 16px;\n-  padding: 30px;\n-  margin: 30px;\n+  padding: 20px;\n+  margin: 20px;\n   border: $app-border;\n   cursor: pointer;\n   user-select: none;\n   transition: $app-item-transition;\n"
+                },
+                {
+                    "date": 1678029159827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n .root {\n   display: inline-block;\n   font-weight: bold;\n   font-size: 16px;\n-  padding: 20px;\n+  padding: 10px;\n   margin: 20px;\n   border: $app-border;\n   cursor: pointer;\n   user-select: none;\n"
+                },
+                {
+                    "date": 1678029166376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n .root {\n   display: inline-block;\n   font-weight: bold;\n   font-size: 16px;\n-  padding: 10px;\n+  padding: 20px;\n   margin: 20px;\n   border: $app-border;\n   cursor: pointer;\n   user-select: none;\n"
+                }
+            ],
+            "date": 1678023804425,
+            "name": "Commit-0",
+            "content": "\n\n<template>\n  <div>\n    \n  </div>\n</template>"
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/stores/storeSelected.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1678027947193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678027961735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { defineStore } from 'pinia';\n import { ref } from 'vue';\n import type { Stuff } from \"~stores/stuffList\";\n \n-export const useUserSelected = defineStore('useUserSelected', () => {\n+export const useStoreSelected = defineStore('useStoreSelected', () => {\n   const list = ref([] as Stuff[]);\n \n   function add(item: Stuff) {\n     list.value.push(item);\n"
+                }
+            ],
+            "date": 1678027947193,
+            "name": "Commit-0",
+            "content": "import { defineStore } from 'pinia';\nimport { ref } from 'vue';\nimport type { Stuff } from \"~stores/stuffList\";\n\nexport const useUserSelected = defineStore('useUserSelected', () => {\n  const list = ref([] as Stuff[]);\n\n  function add(item: Stuff) {\n    list.value.push(item);\n  }\n\n  function remove(item: Stuff) {\n    const index = list.value.indexOf(item);\n\n    if (index !== -1) {\n      list.value.splice(index, 1);\n    }\n  }\n\n  return { list, add, remove };\n});\n"
+        }
+    ]
+}

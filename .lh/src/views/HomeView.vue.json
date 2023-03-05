@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 46,
             "patches": [
                 {
                     "date": 1678012430796,
@@ -88,6 +88,110 @@
                 {
                     "date": 1678022813256,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,9 @@\n \n const { userStuff, storeStuff } = stuffList;\n \n \n-console.log(userStuff);\n \n-\n-\n </script>\n \n <template>\n   <main>\n"
+                },
+                {
+                    "date": 1678023021516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,17 @@\n const stuffList = useStuffList();\n \n const { userStuff, storeStuff } = stuffList;\n \n-\n-\n </script>\n \n <template>\n-  <main>\n+  <main :class=\"$style.root\">\n     <AppStuffList :list=\"userStuff\"/>\n   </main>\n </template>\n+\n+<style lang=\"scss\" module>\n+.root {\n+  height: 100%;\n+}  \n+</style>\n"
+                },
+                {
+                    "date": 1678023054465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,6 +16,6 @@\n \n <style lang=\"scss\" module>\n .root {\n   height: 100%;\n-}  \n+}\n </style>\n"
+                },
+                {
+                    "date": 1678023089815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,13 @@\n </script>\n \n <template>\n   <main :class=\"$style.root\">\n-    <AppStuffList :list=\"userStuff\"/>\n+    <div>\n+      <AppStuffList :list=\"userStuff\"/>\n+      <AppStuffList :list=\"userStuff\"/>\n+    </div>\n+    \n   </main>\n </template>\n \n <style lang=\"scss\" module>\n"
+                },
+                {
+                    "date": 1678023101002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n <template>\n   <main :class=\"$style.root\">\n     <div>\n       <AppStuffList :list=\"userStuff\"/>\n-      <AppStuffList :list=\"userStuff\"/>\n+      <AppStuffList :list=\"storeStuff\"/>\n     </div>\n     \n   </main>\n </template>\n"
+                },
+                {
+                    "date": 1678023109685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n     <div>\n       <AppStuffList :list=\"userStuff\"/>\n       <AppStuffList :list=\"storeStuff\"/>\n     </div>\n-    \n   </main>\n </template>\n \n <style lang=\"scss\" module>\n"
+                },
+                {
+                    "date": 1678023150194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n </script>\n \n <template>\n   <main :class=\"$style.root\">\n-    <div>\n+    <div :class=\"$style.bottom\">\n       <AppStuffList :list=\"userStuff\"/>\n       <AppStuffList :list=\"storeStuff\"/>\n     </div>\n   </main>\n@@ -20,5 +20,9 @@\n <style lang=\"scss\" module>\n .root {\n   height: 100%;\n }\n+\n+.bottom {\n+  display: flex;\n+}\n </style>\n"
+                },
+                {
+                    "date": 1678023220730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n \n <template>\n   <main :class=\"$style.root\">\n     <div :class=\"$style.bottom\">\n-      <AppStuffList :list=\"userStuff\"/>\n-      <AppStuffList :list=\"storeStuff\"/>\n+      <AppStuffList :list=\"userStuff\" :class=\"$style.listBox\"/>\n+      <AppStuffList :list=\"storeStuff\" :class=\"$style.listBox\"/>\n     </div>\n   </main>\n </template>\n \n@@ -24,5 +24,11 @@\n \n .bottom {\n   display: flex;\n }\n+\n+.listBox {\n+  & + & {\n+    margin-left: 30px;\n+  }\n+}\n </style>\n"
+                },
+                {
+                    "date": 1678023257009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n   height: 100%;\n }\n \n .bottom {\n+  height: 100%;\n   display: flex;\n }\n \n .listBox {\n"
+                },
+                {
+                    "date": 1678023287779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n \n .bottom {\n   height: 100%;\n   display: flex;\n+  align-content: start;\n }\n \n .listBox {\n   & + & {\n"
+                },
+                {
+                    "date": 1678023297759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \n .bottom {\n   height: 100%;\n   display: flex;\n-  align-content: start;\n+  align-items: start;\n }\n \n .listBox {\n   & + & {\n"
+                },
+                {
+                    "date": 1678023334738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,8 @@\n \n .bottom {\n   height: 100%;\n   display: flex;\n-  align-items: start;\n }\n \n .listBox {\n   & + & {\n"
+                },
+                {
+                    "date": 1678023604219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,11 @@\n </script>\n \n <template>\n   <main :class=\"$style.root\">\n+    <div>\n+      \n+    </div>\n     <div :class=\"$style.bottom\">\n       <AppStuffList :list=\"userStuff\" :class=\"$style.listBox\"/>\n       <AppStuffList :list=\"storeStuff\" :class=\"$style.listBox\"/>\n     </div>\n"
+                },
+                {
+                    "date": 1678024389272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n <script setup lang=\"ts\">\n+import AppSelectedList from \"@/components/AppSelectedList.vue\";\n import AppStuffList from \"@/components/AppStuffList.vue\";\n import { useStuffList } from \"~stores/stuffList\";\n \n const stuffList = useStuffList();\n@@ -10,9 +11,9 @@\n \n <template>\n   <main :class=\"$style.root\">\n     <div>\n-      \n+      <AppSelectedList :list=\"\" />\n     </div>\n     <div :class=\"$style.bottom\">\n       <AppStuffList :list=\"userStuff\" :class=\"$style.listBox\"/>\n       <AppStuffList :list=\"storeStuff\" :class=\"$style.listBox\"/>\n"
+                },
+                {
+                    "date": 1678025179978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n <script setup lang=\"ts\">\n import AppSelectedList from \"@/components/AppSelectedList.vue\";\n import AppStuffList from \"@/components/AppStuffList.vue\";\n import { useStuffList } from \"~stores/stuffList\";\n+import { useUserSelected } from \"~stores/userSelected\";\n \n const stuffList = useStuffList();\n+const userSelected = useUserSelected();\n \n const { userStuff, storeStuff } = stuffList;\n \n </script>\n"
+                },
+                {
+                    "date": 1678025199412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \n <template>\n   <main :class=\"$style.root\">\n     <div>\n-      <AppSelectedList :list=\"\" />\n+      <AppSelectedList :list=\"userSelected.list\" />\n     </div>\n     <div :class=\"$style.bottom\">\n       <AppStuffList :list=\"userStuff\" :class=\"$style.listBox\"/>\n       <AppStuffList :list=\"storeStuff\" :class=\"$style.listBox\"/>\n"
+                },
+                {
+                    "date": 1678026081918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   height: 100%;\n }\n \n .bottom {\n-  height: 100%;\n+  // height: 100%;\n   display: flex;\n }\n \n .listBox {\n"
+                },
+                {
+                    "date": 1678027678154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,17 @@\n     <div>\n       <AppSelectedList :list=\"userSelected.list\" />\n     </div>\n     <div :class=\"$style.bottom\">\n-      <AppStuffList :list=\"userStuff\" :class=\"$style.listBox\"/>\n-      <AppStuffList :list=\"storeStuff\" :class=\"$style.listBox\"/>\n+      <AppStuffList \n+        :list=\"userStuff\" \n+        :class=\"$style.listBox\"\n+        @select=\"userSelected.add\"\n+      />\n+      <AppStuffList\n+        :list=\"storeStuff\"\n+        :class=\"$style.listBox\"\n+      />\n     </div>\n   </main>\n </template>\n \n"
+                },
+                {
+                    "date": 1678027722109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n       <AppStuffList \n         :list=\"userStuff\" \n         :class=\"$style.listBox\"\n         @select=\"userSelected.add\"\n+        @unselect=\"userSelected.remove\"\n       />\n       <AppStuffList\n         :list=\"storeStuff\"\n         :class=\"$style.listBox\"\n"
+                },
+                {
+                    "date": 1678027931742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n <template>\n   <main :class=\"$style.root\">\n     <div>\n       <AppSelectedList :list=\"userSelected.list\" />\n+      <AppSelectedList :list=\"userSelected.list\" />\n     </div>\n     <div :class=\"$style.bottom\">\n       <AppStuffList \n         :list=\"userStuff\" \n"
+                },
+                {
+                    "date": 1678028057523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,13 @@\n import AppSelectedList from \"@/components/AppSelectedList.vue\";\n import AppStuffList from \"@/components/AppStuffList.vue\";\n import { useStuffList } from \"~stores/stuffList\";\n import { useUserSelected } from \"~stores/userSelected\";\n+import { useStoreSelected } from \"~stores/storeSelected\";\n \n const stuffList = useStuffList();\n const userSelected = useUserSelected();\n+const storeSelected = useStoreSelected();\n \n const { userStuff, storeStuff } = stuffList;\n \n </script>\n@@ -26,8 +28,10 @@\n       />\n       <AppStuffList\n         :list=\"storeStuff\"\n         :class=\"$style.listBox\"\n+        @select=\"storeSelected.add\"\n+        @unselect=\"storeSelected.remove\"\n       />\n     </div>\n   </main>\n </template>\n"
+                },
+                {
+                    "date": 1678028072456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n <template>\n   <main :class=\"$style.root\">\n     <div>\n       <AppSelectedList :list=\"userSelected.list\" />\n-      <AppSelectedList :list=\"userSelected.list\" />\n+      <AppSelectedList :list=\"storeSelected.list\" />\n     </div>\n     <div :class=\"$style.bottom\">\n       <AppStuffList \n         :list=\"userStuff\" \n"
+                },
+                {
+                    "date": 1678028307043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n </script>\n \n <template>\n   <main :class=\"$style.root\">\n-    <div>\n+    <div :class=\"$style.top\">\n       <AppSelectedList :list=\"userSelected.list\" />\n       <AppSelectedList :list=\"storeSelected.list\" />\n     </div>\n     <div :class=\"$style.bottom\">\n"
+                },
+                {
+                    "date": 1678028323015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,12 @@\n .root {\n   height: 100%;\n }\n \n+.top {\n+  display: flex;\n+}\n+\n .bottom {\n   // height: 100%;\n   display: flex;\n }\n"
+                },
+                {
+                    "date": 1678028362056,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n }\n \n .top {\n   display: flex;\n+  justify-self: space-beetwen;\n }\n \n .bottom {\n   // height: 100%;\n"
+                },
+                {
+                    "date": 1678028404688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n }\n \n .top {\n   display: flex;\n-  justify-self: space-beetwen;\n+  justify-content: space-between;\n }\n \n .bottom {\n   // height: 100%;\n"
+                },
+                {
+                    "date": 1678028422495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n \n .top {\n   display: flex;\n   justify-content: space-between;\n+  margin-bottom: 30px;\n }\n \n .bottom {\n   // height: 100%;\n"
                 }
             ],
             "date": 1678012430796,

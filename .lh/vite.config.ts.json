@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1678015570544,
@@ -44,6 +44,10 @@
                 {
                     "date": 1678020426657,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,8 @@\n \n import { defineConfig } from 'vite';\n import vue from '@vitejs/plugin-vue';\n \n-import \"~styles/base.scss\";\n-\n // https://vitejs.dev/config/\n export default defineConfig({\n   plugins: [vue()],\n   resolve: {\n"
+                },
+                {
+                    "date": 1678024094207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   resolve: {\n     alias: {\n       '@': fileURLToPath(new URL('./src', import.meta.url)),\n       '~constants': fileURLToPath(new URL('./src/constants', import.meta.url)),\n+      '~components': fileURLToPath(new URL('./src/components', import.meta.url)),\n       '~stores': fileURLToPath(new URL('./src/stores', import.meta.url)),\n       '~styles': fileURLToPath(new URL('./src/styles', import.meta.url))\n     }\n   },\n"
                 }
             ],
             "date": 1678015570544,

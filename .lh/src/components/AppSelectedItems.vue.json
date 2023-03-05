@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/components/AppSelectedItems.vue",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1678023668574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1678023683132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,7 +3,7 @@\n </script>\n \n <template>\n   <div>\n-    \n+    <div></div>\n   </div>\n </template>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1678023744696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,18 @@\n <script lang=\"ts\" setup>\n+import type { Stuff } from \"~stores/stuffList\";\n+import { toRefs } from 'vue';\n \n+const props = defineProps<{\n+  list: Stuff[];\n+}>()\n+\n+const { list } = toRefs(props);\n </script>\n \n <template>\n   <div>\n-    <div></div>\n+    <div v-for=\"(item) in list\" :key=\"item.id\">\n+      {{ item.name }}\n+    </div>\n   </div>\n </template>\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1678023668574,
+            "name": "Commit-0",
+            "content": "<script lang=\"ts\" setup>\n\n</script>\n\n<template>\n  <div>\n    \n  </div>\n</template>"
+        }
+    ]
+}

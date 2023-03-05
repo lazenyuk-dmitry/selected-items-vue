@@ -1,19 +1,37 @@
 <script setup lang="ts">
-import type { Stuff } from "~stores/stuffList";
 import { toRefs } from 'vue';
+import type { Stuff } from "~stores/stuffList";
+import AppItem from "~components/AppItem.vue";
 
 const props = defineProps<{
   list: Stuff[];
-}>()
+}>();
+
+const emit = defineEmits<{
+  (e: 'select', item: Stuff): void,
+  (e: 'unselect', item: Stuff): void,
+}>();
 
 const { list } = toRefs(props);
+
+function onSelect(item: Stuff) {
+  emit("select", item);
+}
+
+function onUnselect(item: Stuff) {
+  emit("unselect", item);
+}
 </script>
 
 <template>
   <div :class="$style.root">
-    <div :class="$style.item" v-for="(item) in list" :key="item.id">
-      {{ item.name }}
-    </div>
+    <AppItem 
+      v-for="(item) in list"
+      :key="item.id"
+      :data="item"
+      @select="onSelect"
+      @unselect="onUnselect"
+    />
   </div>
 </template>
 
@@ -21,13 +39,8 @@ const { list } = toRefs(props);
 .root {
   display: flex;
   flex-wrap: wrap;
-}
-.root, .item {
+  align-content: start;
   border: $app-border;
-}
-
-.item {
-  padding: 30px;
-  margin: 30px;
+  transition: 0.6s;
 }
 </style>
