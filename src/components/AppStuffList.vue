@@ -68,6 +68,7 @@ function onUnselect(item: Stuff): void {
       :data="item"
       :clickable="true"
       :disabled="item.disabled"
+      :class="$style.item"
       @select="onSelect"
       @unselect="onUnselect"
     />
@@ -81,5 +82,9 @@ function onUnselect(item: Stuff): void {
   align-content: start;
   border: $app-border;
   transition: 0.6s;
+}
+
+.item {
+  margin: 20px;
 }
 </style>

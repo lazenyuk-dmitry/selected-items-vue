@@ -58,7 +58,6 @@ function onClick() {
   font-weight: bold;
   font-size: 16px;
   padding: 20px;
-  margin: 20px;
   border: $app-border;
   transition: $app-item-transition;
 

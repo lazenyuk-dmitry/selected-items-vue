@@ -19,6 +19,7 @@ const { list } = toRefs(props);
           v-for="(item) in list"
           :key="item.id"
           :data="item"
+          :class="$style.item"
         />
       </div>
 
@@ -67,5 +68,9 @@ const { list } = toRefs(props);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.item {
+  margin: 20px;
 }
 </style>

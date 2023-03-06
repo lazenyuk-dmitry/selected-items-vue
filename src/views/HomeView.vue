@@ -16,8 +16,8 @@ const { userStuff, storeStuff } = stuffList;
 <template>
   <main :class="$style.root">
     <div :class="$style.top">
-      <AppSelectedList :list="userSelected.list" />
-      <AppSelectedList :list="storeSelected.list" />
+      <AppSelectedList :list="userSelected.list" :class="$style.selectedBox" />
+      <AppSelectedList :list="storeSelected.list" :class="$style.selectedBox" />
     </div>
     <div :class="$style.bottom">
       <AppStuffList 
@@ -41,6 +41,8 @@ const { userStuff, storeStuff } = stuffList;
 <style lang="scss" module>
 .root {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .top {
@@ -50,13 +52,17 @@ const { userStuff, storeStuff } = stuffList;
 }
 
 .bottom {
-  // height: 100%;
   display: flex;
+  flex-basis: 100%;
 }
 
 .listBox {
   & + & {
     margin-left: 30px;
   }
+}
+
+.selectedBox {
+  max-width: calc(50% - 30px);
 }
 </style>
