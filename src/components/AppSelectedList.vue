@@ -5,9 +5,10 @@ import AppItem from "~components/AppItem.vue";
 
 const props = defineProps<{
   list: Stuff[];
+  placeholder?: boolean;
 }>();
 
-const { list } = toRefs(props);
+const { list, placeholder } = toRefs(props);
 </script>
 
 <template>
@@ -23,7 +24,7 @@ const { list } = toRefs(props);
         />
       </div>
 
-      <p :class="$style.selectedBottomText">selected: N/M</p> 
+      <p v-if="placeholder" :class="$style.selectedBottomText">selected: N/M</p> 
     </div>
 
     <div v-else :class="$style.hint">

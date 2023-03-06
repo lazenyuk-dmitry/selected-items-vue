@@ -16,7 +16,7 @@ const { userStuff, storeStuff } = stuffList;
 <template>
   <main :class="$style.root">
     <div :class="$style.top">
-      <AppSelectedList :list="userSelected.list" :class="$style.selectedBox" />
+      <AppSelectedList :list="userSelected.list" :class="$style.selectedBox" placeholder />
       <AppSelectedList :list="storeSelected.list" :class="$style.selectedBox" />
     </div>
     <div :class="$style.bottom">
