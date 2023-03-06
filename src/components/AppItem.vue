@@ -45,7 +45,6 @@ function onClick() {
         [$style.disabled]: disabled,
       }
     ]"
-    :disabled="disabled"
     type="button"
     @click="onClick"
   >
@@ -61,11 +60,12 @@ function onClick() {
   padding: 20px;
   margin: 20px;
   border: $app-border;
-  cursor: pointer;
-  user-select: none;
   transition: $app-item-transition;
 
   &.clickable {
+    cursor: pointer;
+    user-select: none;
+
     &:hover {
       background: $app-item-hover-bg;
       transition: $app-item-transition;
@@ -73,8 +73,9 @@ function onClick() {
 
     &.disabled {
       background: $app-item-disabled-bg;
-      opacity: 0.8;
+      opacity: 0.5;
       transition: $app-item-transition;
+      cursor: not-allowed;
     }
 
     &.selected {

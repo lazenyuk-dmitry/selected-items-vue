@@ -21,14 +21,16 @@ const { userStuff, storeStuff } = stuffList;
     </div>
     <div :class="$style.bottom">
       <AppStuffList 
-        :list="userStuff" 
+        :list="userStuff"
         :class="$style.listBox"
+        :max-selected="6"
         @select="userSelected.add"
         @unselect="userSelected.remove"
       />
       <AppStuffList
         :list="storeStuff"
         :class="$style.listBox"
+        :max-selected="1"
         @select="storeSelected.add"
         @unselect="storeSelected.remove"
       />

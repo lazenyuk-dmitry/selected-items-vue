@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { toRefs, computed } from 'vue';
+import { ref, toRefs } from 'vue';
 import type { Stuff } from "~stores/stuffList";
 import AppItem from "~components/AppItem.vue";
+
+interface CustomStuff extends Stuff {
+  disabled: boolean;
+}
 
 const props = defineProps<{
   list: Stuff[];
@@ -15,23 +19,41 @@ const emit = defineEmits<{
 
 const { list, maxSelected } = toRefs(props);
 
-let selectedCounter = 0;
+let selectedIds = ref([] as number[]);
 
-const isDisabled = computed(() => {
-  return maxSelected?.value ? selectedCounter >= maxSelected.value : false;
-});
+const customStuffList = ref(list.value.map(item => { 
+  const newItem = item as CustomStuff;
 
-function onSelect(item: Stuff) {
+  return { ...newItem , disabled: false };
+}));
+
+function checkLimit(): void {
+  customStuffList.value.forEach(item => {
+    if (!selectedIds.value.includes(item.id)) {
+      item.disabled = !!maxSelected?.value && selectedIds.value.length >= maxSelected.value;
+    }
+  });
+}
+
+function onSelect(item: Stuff): void {
+  const { id } = item;
+
   if (maxSelected?.value) {
-    selectedCounter++;
+    selectedIds.value.push(id);
+    
+    checkLimit();
   }
 
   emit("select", item);
 }
 
-function onUnselect(item: Stuff) {
+function onUnselect(item: Stuff): void {
+  const { id } = item;
+
   if (maxSelected?.value) {
-    selectedCounter--;
+    selectedIds.value.splice(selectedIds.value.indexOf(id), 1);
+
+    checkLimit();
   }
 
   emit("unselect", item);
@@ -41,11 +63,11 @@ function onUnselect(item: Stuff) {
 <template>
   <div :class="$style.root">
     <AppItem 
-      v-for="(item) in list"
+      v-for="(item) in customStuffList"
       :key="item.id"
       :data="item"
       :clickable="true"
-      :disabled="isDisabled"
+      :disabled="item.disabled"
       @select="onSelect"
       @unselect="onUnselect"
     />
